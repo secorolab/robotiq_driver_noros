@@ -76,7 +76,7 @@ install(
 
 # Install our library.
 install(
-  TARGETS robotiq_driver_noros
+  TARGETS robotiq_driver_noros gripper_interface_test
   EXPORT robotiq_driver_noros_targets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}      # lib
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}      # lib
