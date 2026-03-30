@@ -155,6 +155,25 @@ int main(int argc, char* argv[])
       std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
+    auto objDectectStatus = driver->get_obj_detection_status();
+    switch (objDectectStatus) {
+      case DefaultDriver::ObjectDetectionStatus::OBJECT_DETECTED_CLOSING:
+        std::cout << "ObjectDetectionStatus: detected closing\n";
+        break;
+      case DefaultDriver::ObjectDetectionStatus::OBJECT_DETECTED_OPENING:
+        std::cout << "ObjectDetectionStatus: detected opening\n";
+        break;
+      case DefaultDriver::ObjectDetectionStatus::AT_REQUESTED_POSITION:
+        std::cout << "ObjectDetectionStatus: at requested position\n";
+        break;
+      case DefaultDriver::ObjectDetectionStatus::MOVING:
+        std::cout << "ObjectDetectionStatus: moving\n";
+        break;
+      default:
+        std::cout << "Unhandled ObjectDetectionStatus\n";
+        break;
+    }
+
     std::cout << "Increasing gripper speed..." << std::endl;
     driver->set_speed(0xFF);
 

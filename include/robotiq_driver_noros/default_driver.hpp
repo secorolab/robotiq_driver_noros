@@ -29,7 +29,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
 #include <vector>
 
 #include <robotiq_driver_noros/driver.hpp>
@@ -88,6 +87,28 @@ public:
    * @param force A value between 0x00 (no force) or 0xFF (maximum force).
    */
   void set_force(uint8_t force) override;
+
+  /**
+   * @brief Return object detection status sent from the gripper.
+   */
+  ObjectDetectionStatus get_obj_detection_status();
+
+  /**
+   * @brief Return object detection status sent from the gripper.
+   */
+  GripperStatus get_gripper_status();
+
+  /**
+   * @brief Return last object detection status sent from the gripper.
+   *        This does NOT call update_status().
+   */
+  ObjectDetectionStatus get_last_obj_detection_status();
+
+  /**
+   * @brief Return last object detection status sent from the gripper.
+   *        This does NOT call update_status().
+   */
+  GripperStatus get_last_gripper_status();
 
 private:
   /**

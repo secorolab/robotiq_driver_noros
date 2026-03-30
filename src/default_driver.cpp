@@ -198,6 +198,24 @@ void DefaultDriver::set_force(uint8_t force)
   commanded_gripper_force_ = force;
 }
 
+DefaultDriver::GripperStatus DefaultDriver::get_gripper_status() {
+  update_status();
+  return gripper_status_;
+}
+
+DefaultDriver::ObjectDetectionStatus DefaultDriver::get_obj_detection_status() {
+  update_status();
+  return object_detection_status_;
+}
+
+DefaultDriver::GripperStatus DefaultDriver::get_last_gripper_status() {
+  return gripper_status_;
+}
+
+DefaultDriver::ObjectDetectionStatus DefaultDriver::get_last_obj_detection_status() {
+  return object_detection_status_;
+}
+
 std::vector<uint8_t> DefaultDriver::create_read_command(uint16_t first_register, uint8_t num_registers)
 {
   std::vector<uint8_t> request = { slave_address_,
