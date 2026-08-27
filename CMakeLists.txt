@@ -19,6 +19,7 @@ add_library(
     src/data_utils.cpp
     # src/hardware_interface.cpp
     src/default_driver.cpp
+    src/ft_sensor.cpp
     # src/default_driver_factory.cpp
     # src/fake/fake_driver.cpp
     src/default_serial.cpp
@@ -51,6 +52,20 @@ target_link_libraries(gripper_interface_test
   robotiq_driver_noros
 )
 
+add_executable(ft_sensor_test
+  src/ft_sensor_test.cpp
+  src/command_line_utility.cpp
+)
+target_include_directories(
+  ft_sensor_test
+  PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+target_link_libraries(ft_sensor_test
+  robotiq_driver_noros
+)
+
 ###############################################################################
 # INSTALL
 
@@ -62,7 +77,7 @@ install(
 
 # Install library.
 install(
-  TARGETS robotiq_driver_noros gripper_interface_test
+  TARGETS robotiq_driver_noros gripper_interface_test ft_sensor_test
   EXPORT ${PROJECT_NAME}-targets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}      # lib
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}      # lib
