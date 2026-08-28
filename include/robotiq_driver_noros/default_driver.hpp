@@ -110,6 +110,18 @@ public:
    */
   GripperStatus get_last_gripper_status();
 
+  /**
+   * @brief Return the motor current read instantaneously from the motor drive.
+   * @return uint8_t A value between 0x00 and 0xFF, worth about 10 mA per count.
+   */
+  uint8_t get_gripper_current();
+
+  /**
+   * @brief Return the last motor current sent from the gripper.
+   *        This does NOT call update_status().
+   */
+  uint8_t get_last_gripper_current();
+
 private:
   /**
    * With this command we send a request and wait for a response of given size.
@@ -140,6 +152,7 @@ private:
   ObjectDetectionStatus object_detection_status_;
 
   uint8_t gripper_position_;
+  uint8_t gripper_current_;
   uint8_t commanded_gripper_speed_;
   uint8_t commanded_gripper_force_;
 };
